@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.word-input {
+    @apply text-4xl text-right px-14 outline-none uppercase indent-9 tracking-[1rem] font-mono
+}
+
+.result-var {
+    @apply text-4xl w-full text-right uppercase indent-9 tracking-[1rem] font-mono
+}
+
+.oprator-select {
+    @apply text-3xl text-center bg-transparent py-0 pl-7 pr-3 appearance-none outline-none
+}
+
+.res-row {
+    @apply result-var w-fit relative mt-5
+}
+.var-info {
+    @apply uppercase absolute text-sm tracking-[1.83rem] -right-1.5 -top-4
+}

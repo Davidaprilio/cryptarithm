@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cryptarithm</title>
+  </head>
+  <body class="flex w-full justify-center">
+    <div class="container mt-10">
+      <div class="rounded p-10 border flex flex-col gap-y-6">
+        <input type="text" placeholder="Word 1" id="w1" value="ada" class="word-input">
+        <input type="text" placeholder="Word 2" id="w2" value="di" class="word-input">
+        <div class="flex items-center">
+          <hr class="w-full">
+          <select id="mathOprator" class="oprator-select">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">×</option>
+            <option value="/">⁒</option>
+          </select>
+        </div>
+        <div class="relative flex justify-end">
+          <input type="text" placeholder="Answer" class="word-input" value="dia" id="answer">
+          <button class="text-4xl absolute right-2 -top-1" id="answerBtn">=</button>
+        </div>
+      </div>
+
+      <div id="results"></div>
+    </div>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
