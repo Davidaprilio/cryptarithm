@@ -21,12 +21,30 @@
           </select>
         </div>
         <div class="relative flex justify-end">
-          <input type="text" placeholder="DIA" class="word-input" id="answer">
+          <input type="text" placeholder="DIA" class="word-input" id="answer-input">
           <button class="text-4xl absolute right-2 -top-1" id="answerBtn">=</button>
         </div>
       </div>
 
       <div id="results"></div>
+
+      <template id="answer">
+        <div class="res-row">
+          <span class="var-info" info>AB</span>
+          <span val>12</span>
+        </div>
+      </template>
+
+      <template id="answer-box">
+        <div class="w-fit border p-4 pr-10 rounded-md">
+          <div questions></div>
+          <div class="relative">
+              <hr>
+              <span class="uppercase absolute text-3xl -right-5 -top-5" operator>+</span>
+          </div>
+          <div answer></div>
+      </div>
+      </template>
     </div>
     <script type="module" src="src/main.ts"></script>
   </body>

@@ -6,18 +6,18 @@ type MathOperation = '+' | '-' | '*' | '/'
     const w1 = document.querySelector<HTMLInputElement>('#w1')
     const w2 = document.querySelector<HTMLInputElement>('#w2')
     const mathOprator = document.querySelector<HTMLSelectElement>('#mathOprator')
-    const answer = document.querySelector<HTMLInputElement>('#answer')
+    const answer = document.querySelector<HTMLInputElement>('#answer-input')
     const answerBtn = document.querySelector<HTMLButtonElement>('#answerBtn')
     const resultsEl = document.querySelector<HTMLDivElement>('#results')
-
+    const answerBoxTem = document.querySelector<HTMLTemplateElement>('#answer-box')
+    const answerTem = document.querySelector<HTMLTemplateElement>('#answer')
 
     function createRowResult(val: string, vars: string) {
-        const div = document.createElement('div')
-        div.innerHTML = `<div class="res-row">
-          <span class="var-info">${vars}</span>
-          <span>${val}</span>
-        </div>`
-        return div
+        if (!answerTem) throw new Error('answerTem not found')
+        const el = answerTem.content.cloneNode(true) as DocumentFragment
+        el.querySelector<HTMLSpanElement>('span[val]')!.innerText = val
+        el.querySelector<HTMLSpanElement>('span[info]')!.innerText = vars
+        return el.firstElementChild as HTMLDivElement
     }
 
     function createResultBox(
@@ -25,24 +25,15 @@ type MathOperation = '+' | '-' | '*' | '/'
         operator: string, 
         resultRowEl: HTMLElement
     ) {
-        const div = document.createElement('div')
-        div.innerHTML = `<div class="w-fit border p-4 pr-10 rounded-md">
-            ${wordsElRow.map(el => el.innerHTML).join(' ')}
-            <div class="relative">
-                <hr>
-                <span class="uppercase absolute text-3xl -right-5 -top-5">${operator}</span>
-            </div>
-            ${resultRowEl.innerHTML}
-        </div>`
-        return div
+        if (!answerBoxTem) throw new Error('answerBoxTem not found')
+        const box = answerBoxTem.content.cloneNode(true) as DocumentFragment
+
+        box.querySelector('div[questions]')?.replaceWith(...wordsElRow)
+        box.querySelector('div[answer]')?.replaceWith(resultRowEl)
+        box.querySelector<HTMLSpanElement>('span[operator]')!.innerText = operator
+
+        return box.firstElementChild! as HTMLDivElement
     }
-
-    
-
-    let string = "hello";
-    let uniqueChars = uniqueCharacters(string);
-    console.log(uniqueChars); // Output: ['h', 'e']
-
 
     /**
      * 
@@ -120,10 +111,12 @@ type MathOperation = '+' | '-' | '*' | '/'
             w2!.value,
         ], answer!.value, mathOprator!.value as MathOperation)
 
-        resultsEl!.innerHTML = createResultBox([
-            createRowResult(res[0][0].toString(), w1!.value),
-            createRowResult(res[0][1].toString(), w2!.value),
-        ], '+', createRowResult(res[1].toString(), answer!.value)).innerHTML
+        resultsEl!.appendChild(
+            createResultBox([
+                createRowResult(res[0][0].toString(), w1!.value),
+                createRowResult(res[0][1].toString(), w2!.value),
+            ], '+', createRowResult(res[1].toString(), answer!.value))
+        )
     })
 
 })()
