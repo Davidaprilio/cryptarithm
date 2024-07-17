@@ -8,9 +8,9 @@
   </head>
   <body class="flex w-full justify-center">
     <div class="container mt-10">
-      <div class="rounded p-10 border flex flex-col gap-y-6">
-        <input type="text" placeholder="Word 1" id="w1" value="ada" class="word-input">
-        <input type="text" placeholder="Word 2" id="w2" value="di" class="word-input">
+      <div class="rounded p-10 border flex flex-col gap-y-6 mb-10">
+        <input type="text" placeholder="ADA" id="w1" class="word-input">
+        <input type="text" placeholder="DI" id="w2" class="word-input">
         <div class="flex items-center">
           <hr class="w-full">
           <select id="mathOprator" class="oprator-select">
@@ -21,13 +21,13 @@
           </select>
         </div>
         <div class="relative flex justify-end">
-          <input type="text" placeholder="Answer" class="word-input" value="dia" id="answer">
+          <input type="text" placeholder="DIA" class="word-input" id="answer">
           <button class="text-4xl absolute right-2 -top-1" id="answerBtn">=</button>
         </div>
       </div>
 
       <div id="results"></div>
     </div>
-    <script type="module" src="src/main.js"></script>
+    <script type="module" src="src/main.ts"></script>
   </body>
 </html>
